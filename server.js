@@ -10,11 +10,12 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
-
 const app = express();
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/petes-pets');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,12 +25,11 @@ app.set('view engine', 'pug');
 app.use(methodOverride('_method'))
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(logger('dev')); // log HTTP requests and errors
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 require('./routes/index.js')(app);
 require('./routes/pets.js')(app);
