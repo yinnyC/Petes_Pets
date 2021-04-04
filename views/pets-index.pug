@@ -12,4 +12,21 @@ block content
             p.card-text= pet.description
             .text-right
                 a.card-link(href=`/pets/${pet._id}`) View #{pet.name}
+  nav(aria-label='Page navigation example').d-flex.justify-content-center
+      ul.pagination
+        li.page-item
+          if currentPage > 1
+            a.page-link(href=`?page=${parseInt(currentPage) - 1}`) Previous
+          else 
+            a.page-link(href=`?page=1`) Previous
+          //- a.page-link(href=`?page=${currentPage - 1}`) Previous
+        - var i = 1;
+        while i <= pagesCount
+          li.page-item
+            a.page-link(href=`?page=${i}`)= i++
+        li.page-item
+          if currentPage < pagesCount
+            a.page-link(href=`?page=${parseInt(currentPage) + 1}`) Next
+          else 
+            a.page-link(href=`?page=${parseInt(currentPage)}`) Next
 
