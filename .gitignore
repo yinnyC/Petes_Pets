@@ -1,6 +1,7 @@
 
 # Created by https://www.gitignore.io/api/node,macos,bower
-
+uploads
+/uploads
 ### macOS ###
 *.DS_Store
 .AppleDouble
