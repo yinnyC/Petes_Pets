@@ -41,6 +41,7 @@ app.use((req, res, next) => {
   next(err);
 });
 
+app.locals.PUBLIC_STRIPE_API_KEY = process.env.PUBLIC_STRIPE_API_KEY
 // error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
